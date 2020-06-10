@@ -14,7 +14,7 @@ This is a basic example of how to interact with the ThreatX API using Python. Th
 
 3) Install packages. For this example it's simply requests
 
-`pip install requirements.txt` 
+`pip install -r requirements.txt` 
 
 4) Run the script 
 
