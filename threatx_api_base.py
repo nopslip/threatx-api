@@ -61,8 +61,11 @@ def get_request_stats_by_hour():
     }
     
     # hit the API, save the response 
-    resp = requests.post(metrics_endpoint, json=query)
-
+    try:
+        resp = requests.post(metrics_endpoint, json=query)
+    except requests.exceptions.RequestException as e:  
+        raise SystemExit(e)
+    
     json_resp = resp.json()
 
     if resp.status_code == 200:
