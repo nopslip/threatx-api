@@ -32,4 +32,33 @@ Output will look something like this:
  {'blocks': 1, 'timestamp': 1591362000, 'total': 2372}]
  ```
 
- 
+ #### Bulk Sites 
+ The bulk_sites.py can be used to to bulk add and update sites in ThreatX. 
+
+ 1) Set your API key as a environmental variable
+
+ ` export TX_API_KEY="your_api_key"`
+
+ 2) In the script, set the `customer_name` variable
+ ```
+ # what customer are we adding sites for?
+customer_name = 'your_customer_name_here'
+``` 
+3) Add the sites you want to add or update to bulk_sites.csv. Script currently pulls in `hostname` and `backend/origin` but it can easily be updated to included other vaules like SSL_BLOB.  
+
+4) You can also adjust other values (blocking modes, etc) directly in the `new_site` and `update_site` variables. For example, if you want to adjust blocking modes for new sites just adjust this accordingly. If all values aren't static across all new sites you can add then to the CSV file and import them accordingly. 
+
+```    
+new_site = { 
+        "command":"new", 
+        "token":threatx_token, 
+        "customer_name":customer_name, 
+        "site":{ "hostname":_site_name, 
+        "backend":[[_backend,True]],
+         "isEnabled":True, 
+         "request_blocking":False, 
+         "risk_based_blocking":False,
+         "manual_action_blocking":True
+         } 
+        }
+
